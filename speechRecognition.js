@@ -24,15 +24,15 @@ if ("webkitSpeechRecognition" in window) {
 
     for (let i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
-        confidence = event.results[i][0].confidence;
+        confidence = event.results[i][0].confidence.toFixed(2);
         if (confidence<0.9){
           final_transcript += `<span style="background-color:#E78587">${event.results[i][0].transcript}</span>`;
         } else {
           final_transcript += event.results[i][0].transcript;
         }
-        
+        document.querySelector("#confidence_score").style.display = confidence;
         // final_transcript += event.results[i][0].transcript;
-        console.log(event.results[i][0].confidence);
+        console.log(confidence);
         
       } else {
         interim_transcript += event.results[i][0].transcript;
