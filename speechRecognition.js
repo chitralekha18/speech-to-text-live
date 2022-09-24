@@ -8,6 +8,7 @@ if ("webkitSpeechRecognition" in window) {
 
   speechRecognition.onstart = () => {
     document.querySelector("#status").style.display = "block";
+    document.querySelector("#confidence_score").style.display = "block";
   };
   speechRecognition.onerror = () => {
     document.querySelector("#status").style.display = "none";
@@ -15,6 +16,7 @@ if ("webkitSpeechRecognition" in window) {
   };
   speechRecognition.onend = () => {
     document.querySelector("#status").style.display = "none";
+    document.querySelector("#confidence_score").style.display = "none";
     console.log("Speech Recognition Ended");
   };
 
@@ -30,7 +32,7 @@ if ("webkitSpeechRecognition" in window) {
         } else {
           final_transcript += event.results[i][0].transcript;
         }
-        document.querySelector("#confidence_score").style.display = confidence;
+        document.querySelector("#confidence_score").innerHTML = confidence;
         // final_transcript += event.results[i][0].transcript;
         console.log(confidence);
         
